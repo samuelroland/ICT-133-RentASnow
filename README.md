@@ -16,11 +16,17 @@ Pour travailler proprement, vous allez créer un repository personnel et dédié
 
 Vous voilà prêt à travailler!
 
+Vous **devez** ajouter les fonctionnalités suivantes :
 
-Le site que vous allez créer aura les **fonctionnalités** suivantes :
+- Ajouter une page qui affiche la liste des snowboards du magasin. Pour chaque snowboard, on a l'indication s'il est actuellement loué ou pas. Cette liste doit être lue d'un fichier JSON, de la même manière que les news de la page d'accueil
+- Ajouter une page qui permet de voir les détails d'un snowboard que l'utilisateur a cliqué dans la liste
+- Réaliser un login: une page permet d'introduire son nom et mot de passe dans un formulaire. Quand le formulaire est envoyé, le site retrouve l'utilisateur par le nom et vérifie le mot de passe. S'il y a correspondance, l'utilisateur est enregistré dans la SESSION. La liste des utilisateurs/mots de passe doivent être stockés dans un fichier JSON
+- Si l'utilisateur connecté est employé du magasin, il peut modifier l'indication 'loué ou pas' d'un snowboard à partir de sa page de détail
+- Un fichier de log enregistre toutes les tentatives de connexions
 
-- calendrier du mois avec choix de jour
-- login avec contrôle sur un fichier de cookie
-- logs afin de voir qui s'est connecté sur le site
-- affichage de produits listés dans un CSV
-- CRUD produits si le temps le permet
+Si vous avez encore du temps vous **pouvez** ajouter l'une l'autre des fonctionnalités suivantes :
+
+- Inclure le calendrier réalisé précédemment, en mettant en évidence les jours de fermeture du magasin. Ces jours doivent être lus d'un fichier JSON
+- Si l'utilisateur connecté est employé du magasin, il peut modifier les informations d'un snowboard à partir de sa page de détail
+- Si l'utilisateur connecté est employé du magasin, il peut ajouter un nouveau snowboard
+- Toute autre bonne idée personnelle (à valider avec le prof au préalable)
