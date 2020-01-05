@@ -3,14 +3,8 @@ ob_start();
 $title = "RentASnow - Accueil";
 ?>
 
-<div class="span12">
-    <h1><?= $info['name'] ?></h1>
-    <h2><?= $info['email'] ?></h2>
-</div>
-
 <!-- ________ SLIDER_____________-->
 <div class="row-fluid">
-    <div id="headerSeparator"></div>
     <div class="camera_full_width">
         <div id="camera_wrap">
             <div data-src="view/images/slider/5.jpg">
@@ -22,10 +16,21 @@ $title = "RentASnow - Accueil";
             <div data-src="view/images/slider/2.jpg"></div>
         </div>
         <br style="clear:both"/>
-        <div style="margin-bottom:40px"></div>
     </div>
-    <div id="headerSeparator2"></div>
 </div>
+
+<!-- ________ NEWS _____________-->
+<div class="span12">
+    <h1>Les news</h1>
+    <?php foreach ($news as $onepieceofnews) { ?>
+        <div class="row mt-4">
+            <div class="col-2"><?= date('d.M.Y', strtotime($onepieceofnews['date'])) ?></div>
+            <h4 class="col-4"><?= $onepieceofnews['title'] ?></h4>
+        </div>
+        <div class="row ml-5"><?= $onepieceofnews['details'] ?></div>
+    <?php } ?>
+</div>
+
 
 <script src="assets/carousel/jquery.carouFredSel-6.2.0-packed.js" type="text/javascript"></script>
 <script src="assets/camera/scripts/camera.min.js" type="text/javascript"></script>

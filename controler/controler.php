@@ -5,7 +5,7 @@ require_once 'model/model.php';
 
 function home()
 {
-    $store = getStoreInfo();
+    $news = getNews();
     require_once 'view/home.php';
 }
 ?>
