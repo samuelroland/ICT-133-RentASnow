@@ -165,8 +165,5 @@
 
     <script type="text/javascript">function startCamera() {$('#camera_wrap').camera({ fx: 'scrollLeft', time: 2000, loader: 'none', playPause: false, navigation: true, height: '35%', pagination: true });}$(function(){startCamera()});</script>
 
-    <!-- scripts added to standard template-->
-    <script src="view/content/scripts/custo/userScript.js"></script>
-
 </body>
 </html>
