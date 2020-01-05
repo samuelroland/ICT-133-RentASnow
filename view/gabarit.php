@@ -1,45 +1,19 @@
-﻿<?php
-/**
- * Created by PhpStorm.
- * User: Pascal.BENZONANA
- * Date: 08.05.2017
- * Time: 09:16
- * Last Update :    Nicolas Glassey
- *                  02.03.2019 - add action displaySnows
- *                  11.03.2019 - add ref javascript to customized scripts
- */
-?>
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8">
     <title><?=$title;?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Html5TemplatesDreamweaver.com">
-    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW"> <!-- Remove this Robots Meta Tag, to allow indexing of site -->
 
-    <link href="view/content/scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="view/content/scripts/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="node_modules/bootstrap/dist/css/bootstrap-grid.css" rel="stylesheet">
+    <link href="node_modules/bootstrap/dist/css/bootstrap-reboot.css" rel="stylesheet">
 
     <!-- Icons -->
     <link href="view/content/scripts/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="view/content/scripts/icons/social/stylesheets/social_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
-    <!--[if lt IE 8]>
-    <link href="view/content/scripts/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet"
-          type="text/css"/>
-    <link href="view/content/scripts/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet"
-          type="text/css"/>
-    <![endif]-->
+
     <link rel="stylesheet" href="view/content/scripts/fontawesome/css/font-awesome.min.css">
-    <!--[if IE 7]>
-    <link rel="stylesheet" href="view/content/scripts/fontawesome/css/font-awesome-ie7.min.css">
-    <![endif]-->
 
     <link href="view/content/scripts/carousel/style.css" rel="stylesheet" type="text/css" />
     <link href="view/content/scripts/camera/css/camera.css" rel="stylesheet" type="text/css" />
@@ -77,47 +51,10 @@
                                 <!-- On commence par afficher les boutons qui s'afficheront, peu importe les événements-->
                                 <li><a href="index.php?action=home">Home</a></li>
                                 <li><a href="index.php?action=displaySnows">Snows</a></li>
-                                <!-- On gère ensuite les cas pour lesquels on aimerait permettre à l'utilisateur de se connecter/s'inscrire-->
-                                <?php if(!isset($_SESSION['userEmailAddress']) || (!isset($_GET['action'])) || ((@$_GET['action']=="logout"))) :?>
-                                    <li><a href="index.php?action=login">Login</a></li>
-                                    <li><a href="index.php?action=register"  style="color:#FC05CB">Register</a></li>
-                                <!-- Puis la situation "connecté"-->
-                                <?php else :?>
-                                    <li><a href="index.php?action=logout">Logout</a></li>
-                                <?php endif; ?>
-                                <?php if(isset($_SESSION['cart'])) :?>
-                                    <li><a href="index.php?action=displayCart"><img src="view/content/images/cart.png">  <?=  count($_SESSION['cart']);?> snow(s)</a></li>
-                                <?php endif; ?>
-                                <?php if(isset($_SESSION['haveRent'])) :?>
-                                    <li><a href="index.php?action=displayRent&display=all">Vos locations</a></li>
-                                <?php endif; ?>
                             </ul>
-                            <!-- on affiche, si la session est active, l'adresse email de l'utilisateur-->
-                            <?php if(isset($_SESSION['userEmailAddress'])) :?>
-                                <h6>Vous êtes connecté : <?= $_SESSION['userEmailAddress'];?></h6>
-                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="row-fluid">
-            <div class="span12">
-                <!-- ________ SLIDER_____________-->
-                <?php if((@$_GET['action']=="home")||(!isset($_GET['action']))) :?>
-                    <div id="headerSeparator"></div>
-                    <div class="camera_full_width">
-                        <div id="camera_wrap">
-                            <div data-src="view/content/slider-images/5.jpg" ><div class="camera_caption fadeFromBottom cap1">Les derniers modèles toujours à disposition.</div></div>
-                            <div data-src="view/content/slider-images/1.jpg" ><div class="camera_caption fadeFromBottom cap2">Découvrez des paysages fabuleux avec des sensations.</div></div>
-                            <div data-src="view/content/slider-images/2.jpg" ></div>
-                        </div>
-                        <br style="clear:both"/><div style="margin-bottom:40px"></div>
-                    </div>
-                    <div id="headerSeparator2"></div>
-                    <!-- ________ SLIDER_____________-->
-                <?php endif; ?>
             </div>
         </div>
 
@@ -125,17 +62,10 @@
 
             <div class="divPanel notop page-content">
                 <div class="row-fluid">
-
-                    <!--__________CONTENU__________-->
-
                     <div class="span12" id="divMain">
                         <?=$content; ?>
                     </div>
-
-                    <!--________FIN CONTENU________-->
-
                 </div>
-
                 <div id="footerInnerSeparator"></div>
             </div>
         </div>
@@ -227,18 +157,8 @@
     </div>
     <br /><br /><br />
 
-    <script src="view/content/scripts/jquery.min.js" type="text/javascript"></script>
-    <script src="view/content/scripts/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="view/content/scripts/default.js" type="text/javascript"></script>
-
-
-    <script src="view/content/scripts/carousel/jquery.carouFredSel-6.2.0-packed.js" type="text/javascript"></script><script type="text/javascript">$('#list_photos').carouFredSel({ responsive: true, width: '100%', scroll: 2, items: {width: 320,visible: {min: 2, max: 6}} });</script><script src="view/content/scripts/camera/scripts/camera.min.js" type="text/javascript"></script>
-    <script src="view/content/scripts/easing/jquery.easing.1.3.js" type="text/javascript"></script>
-
-    <script type="text/javascript">function startCamera() {$('#camera_wrap').camera({ fx: 'scrollLeft', time: 2000, loader: 'none', playPause: false, navigation: true, height: '35%', pagination: true });}$(function(){startCamera()});</script>
-
-    <!-- scripts added to standard template-->
-    <script src="view/content/scripts/custo/userScript.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/bootstrap/js/bootstrap.js"></script>
 
 </body>
 </html>
