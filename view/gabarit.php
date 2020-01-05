@@ -10,13 +10,13 @@
     <link href="node_modules/bootstrap/dist/css/bootstrap-reboot.css" rel="stylesheet">
 
     <!-- Icons -->
-    <link href="view/content/scripts/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="view/content/scripts/icons/social/stylesheets/social_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="assets/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="assets/icons/social/stylesheets/social_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="view/content/scripts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fontawesome/css/font-awesome.min.css">
 
-    <link href="view/content/scripts/carousel/style.css" rel="stylesheet" type="text/css" />
-    <link href="view/content/scripts/camera/css/camera.css" rel="stylesheet" type="text/css" />
+    <link href="assets/carousel/style.css" rel="stylesheet" type="text/css" />
+    <link href="assets/camera/css/camera.css" rel="stylesheet" type="text/css" />
 
     <link href="http://fonts.googleapis.com/css?family=Syncopate" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css">
@@ -25,8 +25,7 @@
     <link href="http://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
 
-    <link href="view/content/styles/custom.css" rel="stylesheet" type="text/css" />
-    <link href="view/custo/calendar.css" rel="stylesheet" type="text/css" />
+    <link href="css/subtlepatterns/custom.css" rel="stylesheet" type="text/css" />
 </head>
 <body id="pageBody">
 
@@ -158,7 +157,7 @@
     <br /><br /><br />
 
     <script src="node_modules/jquery/dist/jquery.js"></script>
-    <script src="node_modules/bootstrap/js/bootstrap.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
 
 </body>
 </html>
