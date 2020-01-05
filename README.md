@@ -29,4 +29,6 @@ Si vous avez encore du temps vous **pouvez** ajouter l'une l'autre des fonctionn
 - Inclure le calendrier réalisé précédemment, en mettant en évidence les jours de fermeture du magasin. Ces jours doivent être lus d'un fichier JSON
 - Si l'utilisateur connecté est employé du magasin, il peut modifier les informations d'un snowboard à partir de sa page de détail
 - Si l'utilisateur connecté est employé du magasin, il peut ajouter un nouveau snowboard
+- Permettre à l'utilisateur de filtrer la liste des snowboards pour ne montrer que ceux qui sont loués (ou pas)
+- Permettre à l'utilisateur d'exporter la liste des snowboards en format PDF
 - Toute autre bonne idée personnelle (à valider avec le prof au préalable)
