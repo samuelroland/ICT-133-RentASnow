@@ -1,0 +1,20 @@
+[
+  {
+    "username": "samuel",
+    "password": "samuelmdp",
+    "date-inscription": "2020-01-02",
+    "employe": false
+  },
+  {
+    "username": "benoit",
+    "password": "benoitmdp",
+    "date-inscription": "2020-01-02",
+    "employe": true
+  },
+  {
+    "username": "miguel",
+    "password": "miguelmdp",
+    "date-inscription": "2020-01-02",
+    "employe": false
+  }
+]
