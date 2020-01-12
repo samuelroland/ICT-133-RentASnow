@@ -1,6 +1,57 @@
 #divLogin{
-    background-color: grey;
+    background-color: lightseagreen;
     border: solid 1px black;
-    float: right;
     padding: 10px;
+    max-width: 350px;
+    margin-bottom: 50px;
+}
+
+.nav li{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+form input{
+    width: 100%;
+}
+
+#divFooter{
+    margin-top: 150px;
+}
+header{
+height: 500px;
+    margin-top: 50px;
+}
+
+#infochkwantnews{
+    font-size: 0.7em;
+
+}
+
+#chk1{
+
+}
+
+.divSnow{
+    border: 1px black dashed;
+    padding: 10px;
+    margin: 0px;
+}
+.divSnow:hover{
+ background-color: lightgrey;
+}
+#listsnows{
+margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+code {
+    margin-top: 10px;
+    padding: .2em .4em;
+    text-align: right;
+    float: right;
+    color: darkblue;
+    font-size: 85%;
+    background-color: rgb(59, 166, 168);
+    border-radius: 3px;
 }

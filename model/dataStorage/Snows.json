@@ -1,0 +1,62 @@
+[
+  {
+    "modele": "B101",
+    "marque": "Burton",
+    "dateretour": "",
+    "disponible": true
+  },
+  {
+    "modele": "B126",
+    "marque": "Free Thinker",
+    "dateretour": "2020-01-09",
+    "disponible": false
+  },
+  {
+    "modele": "B327",
+    "marque": "Burton",
+    "dateretour": "2020-02-02",
+    "disponible": false
+  },
+  {
+    "modele": "K067",
+    "marque": "Prior",
+    "dateretour": "2020-01-15",
+    "disponible": false
+  },
+  {
+    "modele": "K266",
+    "marque": "KR",
+    "dateretour": "",
+    "disponible": true
+  },
+  {
+    "modele": "K409",
+    "marque": "KR",
+    "dateretour": "",
+    "disponible": true
+  },
+  {
+    "modele": "N100",
+    "marque": "NSnow",
+    "dateretour": "2020-03-19",
+    "disponible": false
+  },
+  {
+    "modele": "N754",
+    "marque": "NSnow",
+    "dateretour": "2020-02-12",
+    "disponible": false
+  },
+  {
+    "modele": "P067",
+    "marque": "Prior",
+    "dateretour": "2020-04-06",
+    "disponible": false
+  },
+  {
+    "modele": "P165",
+    "marque": "Prior",
+    "dateretour": "",
+    "disponible": true
+  }
+]

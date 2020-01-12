@@ -15,16 +15,17 @@ if (isset($_GET['action'])) {
 }
 
 switch ($action) {
-    case "home":
-        home();
     case "displaySnows":
         products();
         break;
     case "trylogin":
-        trylogin();
+        trylogin($username, $password);
         break;
     case "disconnect":
         disconnect();
+        break;
+    case "createaccount":
+        createaaccount();
         break;
     default:
         home();

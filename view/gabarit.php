@@ -40,51 +40,57 @@
          style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: -1;zoom: 1;"></div>
 
     <div class="divPanel notop nobottom">
-        <div class="row-fluid">
-            <div class="row">
-                <div id="divLogo" class="pull-left">
-                    <a href="index.php" id="divSiteTitle">Rent A Snow</a><br/>
-                    <a href="index.php" id="divTagLine">La glisse à moindre coût</a>
+        <header>
+            <div class="row-fluid">
+                <div class="row">
+                    <div id="divLogo" class="pull-left">
+                        <a href="index.php" id="divSiteTitle">Rent A Snow</a><br/>
+                        <a href="index.php" id="divTagLine">La glisse à moindre coût</a>
+                    </div>
                 </div>
-            </div>
-            <div id="divLogin" class="pull-left">
-                <?php
+                <div id="divLogin" class=" pull-right col-lg-5 col-md-5 col-sm-12">
+                    <?php
+                    //Si il est connecté:
+                    if (isset($_SESSION['username']) == false) { ?>
+                        <form action="/index.php?action=trylogin" method="post">
+                            <strong>Connexion</strong><br>
+                            <label for="">Identifiant</label>
+                            <input type="text" id="username" class="form-control" name="username"
+                                   placeholder="john64"><br>
+                            <label for="">Mot de passe</label>
+                            <input type="password" class="form-control" id="password" name="password"><br>
+                            <input type="submit" value="Se connecter !">
+                            <p><a href="/?action=forgotpwd">Mot de passe oublié ? </a></p>
+                        </form> <p>Pas encore inscrit ? <a href="/?action=createaccount">Créer un compte.</a></p>
+                    <?php } else { //Si il n'est pas connecté:
+                        ?>
+                        <form action="/index.php?action=disconnect" method="post">
+                            <strong>Connecté en tant que: </strong>
+                            <span><?= $_SESSION['username'] ?></span><br>
+                            <input type="submit" value="Déconnexion !">
+                        </form>
+                    <?php }
 
-                //Si il est connecté:
-                if (isset($_SESSION['username'])) { ?>
-                    <strong>Connexion</strong>
-                    <form action="/index.php?action=trylogin" method="post">
-                        <label for="">Identifiant</label>
-                        <input type="text" id="username" name="username"><br>
-                        <label for="">Mot de passe</label>
-                        <input type="password" id="password" name="password"><br>
-                        <input type="submit" value="Se connecter !">
-                    </form>
-                <?php } else { //Si il n'est pas connecté:
                     ?>
-                    <form action="/index.php?action=disconnect" method="post">
-                        <strong>Connecté en tant que: </strong>
-                        <span><?= $_SESSION['username'] ?></span>
-                        <input type="submit" value="Déconnexion !">
-                    </form>
-                <?php }
 
+                </div>
 
-                ?>
-
-
-            </div>
-
-            <div class="row">
-                <div class="navbar">
-                    <ul class="nav nav-pills">
-                        <!-- On commence par afficher les boutons qui s'afficheront, peu importe les événements-->
-                        <li><a href="index.php?action=home">Home</a></li>
-                        <li><a href="index.php?action=displaySnows">Snows</a></li>
-                    </ul>
+                <div class="col-lg-7 col-md-5 col-sm-12">
+                    <div class="navbar col-12">
+                        <ul class="nav nav-pills">
+                            <!-- On commence par afficher les boutons qui s'afficheront, peu importe les événements-->
+                            <li><a href="index.php?action=home">Home</a></li>
+                            <li><a href="index.php?action=displaySnows">Snows</a></li>
+                            <li><a href="index.php?action=displaySnows">Anciens achats</a></li>
+                            <li><a href="index.php?action=displayPanier"><img src="view/images/cart.png" alt="">  Panier</a></li>
+                            <?php if (isset($_SESSION['username']) == true) { ?>
+                                <li><a href="index.php?action=myaccount">Mon compte</a></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
+        </header>
 
         <div class="contentArea">
             <div class="divPanel notop page-content">
@@ -101,8 +107,8 @@
 
         <div id="divFooter" class="footerArea">
             <div class="divPanel">
-                <div class="row">
-                    <div class="col-4" id="footerArea1">
+                <div class="row col-12">
+                    <div class="col-lg-4 col-md-6 col-sm-12" id="footerArea1">
                         <h3>Notre magasin</h3>
                         <p>Nous sommes une équipe de jeunes snowboardeurs qui souhaitons faire découvrir cette
                             discipline à tous les publics.</p>
@@ -114,7 +120,7 @@
                         </p>
                     </div>
 
-                    <div class="col-4" id="footerArea3">
+                    <div class="col-lg-4 col-md-6 col-sm-12" id="footerArea3">
                         <h3>Horaires de location</h3>
                         <p>Les locations peuvent s'effectuer tous les jours de la semaine en haute saison de 07h à 19h
                             et en basse saison, les jours ouvrables de 8h à 18h.<br>
@@ -122,7 +128,7 @@
                             guichet automatique à l'arrière du magasin</p>
                     </div>
 
-                    <div class="col-4" id="footerArea4">
+                    <div class="col-lg-4 col-md-6 col-sm-12" id="footerArea4">
                         <h3>Contacts</h3>
 
                         <ul id="contact-info">

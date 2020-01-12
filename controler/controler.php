@@ -15,32 +15,39 @@ function products()
     require_once 'view/products.php';
 }
 
-function trylogin()
+function trylogin($username, $password)
 {
-    var_dump($_SESSION);
     var_dump($username);
+    var_dump($password);
     $listUsers = getUsers();
     foreach ($listUsers as $userinrun) {
+        var_dump($userinrun['username'] );
+        var_dump($userinrun['password'] );
+
+
         if ($username == $userinrun['username'] && $password == $userinrun['password']) {
             $_SESSION['username'] = $userinrun['username'];
-            var_dump($_SESSION['username']);
+
         } else {
+            unset($_SESSION['username']);
             home();
             die();
         }
+        var_dump($_SESSION['username']);
     }
-
-
 
     require_once "view/home.php";
 }
 
 function disconnect(){
-    var_dump($_SESSION['username']);
-    var_dump($username);
     unset($_SESSION['username']);
-
+    session_abort();
     require_once "view/home.php";
+}
+
+function createaaccount(){
+
+    require_once 'view/createaccount.php';
 }
 
 ?>
