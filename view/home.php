@@ -1,6 +1,5 @@
 <?php
 ob_start();
-$title = "RentASnow - Accueil";
 ?>
 
 <!-- ________ SLIDER_____________-->

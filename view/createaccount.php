@@ -4,13 +4,10 @@
  *  Author: Samuel Roland
  *  Creation date: 09.01.2020
  */
-$title = "RentASnow - Produits";
 ob_start();
 
-?>
-<p>Veuillez rentrer les informations suivantes qui serviront à créer votre compte...</p>
+?> <br>
 <form action="/?createaccount" method="post" class="form-group">
-
     <label for="username">Nom d'utilisateur</label>
     <input type="text" name="username" class="form-group form-control">
     <label for="password" >Mot de passe assez sécurisé...</label>

@@ -27,6 +27,8 @@ switch ($action) {
     case "createaccount":
         createaaccount();
         break;
+        case "detailsproducts";
+        detailsproductsshow();
     default:
         home();
         break;

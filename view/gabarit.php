@@ -82,7 +82,7 @@
                             <li><a href="index.php?action=home">Home</a></li>
                             <li><a href="index.php?action=displaySnows">Snows</a></li>
                             <li><a href="index.php?action=displaySnows">Anciens achats</a></li>
-                            <li><a href="index.php?action=displayPanier"><img src="view/images/cart.png" alt="">  Panier</a></li>
+                            <li><a href="index.php?action=displayPanier"><img src="view/images/cart.png" alt="">  Mes locations</a></li>
                             <?php if (isset($_SESSION['username']) == true) { ?>
                                 <li><a href="index.php?action=myaccount">Mon compte</a></li>
                             <?php } ?>
@@ -96,6 +96,8 @@
             <div class="divPanel notop page-content">
                 <div class="row-fluid">
                     <div class="span12" id="divMain">
+                        <h2><?= $title ?></h2>
+                        <h4><?=$description ?></h4>
                         <?= $content; ?>
                     </div>
                 </div>
