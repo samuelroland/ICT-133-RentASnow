@@ -29,6 +29,7 @@ switch ($action) {
         break;
         case "detailsproducts";
         detailsproductsshow();
+        break;
     default:
         home();
         break;

@@ -22,23 +22,11 @@ function products()
 
 function trylogin($username, $password)
 {
-    var_dump($username);
-    var_dump($password);
     $listUsers = getUsers();
-    foreach ($listUsers as $userinrun) {
-        var_dump($userinrun['username']);
-        var_dump($userinrun['password']);
-
-
+    foreach ($listUsers as $userinrun) {    //scanner toutes les personnes inscrites.
         if ($username == $userinrun['username'] && $password == $userinrun['password']) {
-            $_SESSION['username'] = $userinrun['username'];
-
-        } else {
-            unset($_SESSION['username']);
-            home();
-            die();
+            $_SESSION['username'] = $username;
         }
-        var_dump($_SESSION['username']);
     }
 
     require_once "view/home.php";
@@ -47,7 +35,6 @@ function trylogin($username, $password)
 function disconnect()
 {
     unset($_SESSION['username']);
-    session_abort();
     require_once "view/home.php";
 }
 
