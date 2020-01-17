@@ -1,6 +1,8 @@
 [
   {
-    "username": "samuel",
+    "firstname": "Samuel",
+    "lastname": "Roland",
+    "email": "samuel.roland@gmail.com",
     "password": "samuelmdp",
     "birthdate": "2000-12-18",
     "wantnews": true,
@@ -8,7 +10,9 @@
     "employe": false
   },
   {
-    "username": "benoit",
+    "firstname": "Benoit",
+    "lastname": "Pierrehumbert",
+    "email": "benoit.pierrehumbert@gmail.com",
     "password": "benoitmdp",
     "birthdate": "2004-06-05",
     "wantnews": false,
@@ -16,7 +20,9 @@
     "employe": true
   },
   {
-    "username": "miguel",
+    "firstname": "Miguel",
+    "lastname": "Soares",
+    "email": "miguel.soares@gmail.com",
     "password": "miguelmdp",
     "birthdate": "2002-11-15",
     "wantnews": true,
