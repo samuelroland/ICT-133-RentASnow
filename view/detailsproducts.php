@@ -14,8 +14,11 @@ foreach ($listproducts as $product) {
 
 if (isset($snowwanted)) {
     ?>
-    <img src="/view/images/<?php echo "$modelesnow.jpg" ?>" alt="photo du snow"><br><br><br>
-    <table class="table">
+    <div class="container">
+        <img class="imgsnowdetails" src="/view/images/<?= $snowwanted['bigimage'] ?>" alt="photo du snow"><br><br><br>
+    </div>
+    <h3>Informations détaillées sur <?= $snowwanted['modele'] ?></h3>
+    <table class="table table-bordered table-striped">
         <thead>
         <tr>
             <th>Propriété</th>
@@ -42,12 +45,19 @@ if (isset($snowwanted)) {
         </tr>
         <tr>
             <td>Date de retour (si indisponible)</td>
-            <td><?= $snowwanted['dateretour'] ?></td>
+            <td><?= date("d.m.Y", strtotime($snowwanted['dateretour'])); ?></td>
         </tr>
         </tbody>
     </table>
 
     <?php
+} else if ($modelesnow != "") {
+    $title = "Aucun snow avec $modelesnow comme nom a été trouvé...";
+    $description = "Pas tellement possible de louer du coup !";
+
+} else {
+    $title = "Aucun snow n'a été demandé ...";
+    $description = "Pas tellement possible de louer du coup !";
 }
 $content = ob_get_clean();
 require "gabarit.php";

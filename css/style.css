@@ -11,21 +11,22 @@
     margin-bottom: 10px;
 }
 
-form input{
-    width: 100%;
+#divLogin input{
+    float: right;
 }
 
 #divFooter{
     margin-top: 150px;
 }
-header{
-height: 500px;
-    margin-top: 50px;
+.smallheader{
+    height: 250px;
+}
+.bigheader{
+    height: 500px;
 }
 
 #infochkwantnews{
     font-size: 0.7em;
-
 }
 
 #chk1{
@@ -54,4 +55,8 @@ code {
     font-size: 85%;
     background-color: rgb(59, 166, 168);
     border-radius: 3px;
+}
+
+.imgsnowdetails{
+    width: 350px;
 }
