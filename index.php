@@ -19,7 +19,7 @@ switch ($action) {
         products();
         break;
     case "trylogin":
-        trylogin($username, $password);
+        trylogin($email, $password);
         break;
     case "disconnect":
         disconnect();
