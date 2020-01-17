@@ -12,7 +12,7 @@ foreach ($listproducts as $product) {
     <div class="divSnow col-sm-12 col-md-6 col-lg-4">
         <a href='/?action=detailsproducts&model=<?= $product['modele'] ?>'><h3><?= $product['modele'] ?></h3>
             <h4><?= $product['marque'] ?></h4>
-            <img src="view/images/<?php echo $product['modele'] . "_small.jpg" ?>" alt="<?= $product['modele'] ?>">
+            <img src="view/images/<?= $product['smallimage']?>" alt="<?= $product['modele'] ?>">
             <?php if ($product['disponible'] == false) {
                 echo "<code>Loué jusqu'au  " . date("d M Y", strtotime($product['dateretour'])) . "</code>";
             } ?>
