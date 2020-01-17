@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="/css/style.css">   <!-- css personnel -->
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="js/script.js"></script>
 
 </head>
 <body id="pageBody">
@@ -40,7 +41,13 @@
          style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: -1;zoom: 1;"></div>
 
     <div class="divPanel notop nobottom">
-        <header>
+        <header class="<?php if (isset($_SESSION['user']) == false) {
+            echo "bigheader";
+        } else {
+            echo "smallheader";
+        }
+
+        ?>">
             <div class="row-fluid">
                 <div class="row">
                     <div id="divLogo" class="pull-left">
@@ -51,22 +58,31 @@
                 <div id="divLogin" class=" pull-right col-lg-5 col-md-5 col-sm-12">
                     <?php
                     //Si il est connecté:
-                    if (isset($_SESSION['username']) == false) { ?>
+                    if (isset($_SESSION['user']) == false) { ?>
                         <form action="/index.php?action=trylogin" method="post">
                             <strong>Connexion</strong><br>
                             <label for="">Identifiant</label>
-                            <input type="text" id="username" class="form-control" name="username"
-                                   placeholder="john64"><br>
+                            <input type="email" id="email" class="form-control" name="email"
+                                   placeholder="john64@gmail.com"><br>
                             <label for="">Mot de passe</label>
                             <input type="password" class="form-control" id="password" name="password"><br>
-                            <input type="submit" value="Se connecter !">
+                            <?php
+                            var_dump($_SESSION['failed']);
+                                if ($_SESSION['failed']==true){ //si l'utilisateur à raté à la dernière tentative de login
+                                    var_dump($_SESSION['failed']);
+                                    echo "<p>Les identifiants de connexion ne concordent pas</p>";
+                                }
+
+                            ?>
                             <p><a href="/?action=forgotpwd">Mot de passe oublié ? </a></p>
-                        </form> <p>Pas encore inscrit ? <a href="/?action=createaccount">Créer un compte.</a></p>
+                            <p>Pas encore inscrit ? <a href="/?action=createaccount">Créer un compte.</a></p>
+                            <input type="submit" value="Se connecter !">
+                        </form>
                     <?php } else { //Si il n'est pas connecté:
                         ?>
                         <form action="/index.php?action=disconnect" method="post">
                             <strong>Connecté en tant que: </strong>
-                            <span><?= $_SESSION['username'] ?></span><br>
+                            <span><?= $_SESSION['user'] ?></span><br><br>
                             <input type="submit" value="Déconnexion !">
                         </form>
                     <?php }
@@ -82,8 +98,9 @@
                             <li><a href="index.php?action=home">Home</a></li>
                             <li><a href="index.php?action=displaySnows">Snows</a></li>
                             <li><a href="index.php?action=displaySnows">Anciens achats</a></li>
-                            <li><a href="index.php?action=displayPanier"><img src="view/images/cart.png" alt="">  Mes locations</a></li>
-                            <?php if (isset($_SESSION['username']) == true) { ?>
+                            <li><a href="index.php?action=displayPanier"><img src="view/images/cart.png" alt=""> Mes
+                                    locations</a></li>
+                            <?php if (isset($_SESSION['user']) == true) { ?>
                                 <li><a href="index.php?action=myaccount">Mon compte</a></li>
                             <?php } ?>
                         </ul>
@@ -97,7 +114,7 @@
                 <div class="row-fluid">
                     <div class="span12" id="divMain">
                         <h2><?= $title ?></h2>
-                        <h4><?=$description ?></h4>
+                        <h4><?= $description ?></h4>
                         <?= $content; ?>
                     </div>
                 </div>

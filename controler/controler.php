@@ -20,13 +20,17 @@ function products()
     require_once 'view/products.php';
 }
 
-function trylogin($username, $password)
+function trylogin($email, $password)
 {
+    $_SESSION['failed'] = false;
     $listUsers = getUsers();
     foreach ($listUsers as $userinrun) {    //scanner toutes les personnes inscrites.
-        if ($username == $userinrun['username'] && $password == $userinrun['password']) {
-            $_SESSION['username'] = $username;
+        if ($email == $userinrun['email'] && $password == $userinrun['password']) {
+            $_SESSION['user'] = $email;
         }
+    }
+    if (isset($_SESSION['user']) == false) {
+        $_SESSION['failed'] = true;
     }
 
     require_once "view/home.php";
@@ -34,7 +38,7 @@ function trylogin($username, $password)
 
 function disconnect()
 {
-    unset($_SESSION['username']);
+    unset($_SESSION['user']);
     require_once "view/home.php";
 }
 
@@ -52,9 +56,6 @@ function detailsproductsshow()
         $modelesnow = $_GET['model'];
         $title = "Détails de $modelesnow";
         $description = "Et vous pouvez ensuite louer !";
-    } else {
-        $title = "Aucun snow avec $modelesnow comme nom a été trouvé...";
-        $description = "Pas tellement possible de louer du coup !";
     }
 
     require_once 'view/detailsproducts.php';
