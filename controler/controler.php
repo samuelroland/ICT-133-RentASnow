@@ -33,14 +33,14 @@ function trylogin($email, $password)
         $_SESSION['failed'] = true;
     }
 
-    require_once "view/home.php";
+    home(); //au lieu d'afficher la vue home on utilise la fonction home() pour avoir les news avec.
 }
 
 function disconnect()
 {
     unset($_SESSION['user']);
     unset($_SESSION['name']);
-    require_once "view/home.php";
+    home();
 }
 
 function createaccount()
