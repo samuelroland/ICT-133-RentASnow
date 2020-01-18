@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+unset($_SESSION['error']);
 //prendre les valeurs du formulaire de login si rempli:
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = $_POST['email'];
@@ -37,4 +37,5 @@ switch ($action) {
         home();
         break;
 }
+
 ?>
