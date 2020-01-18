@@ -7,7 +7,7 @@ function getNews()
 
 function getProducts()
 {
-    return json_decode(file_get_contents("model/dataStorage/Snows.json"), true);
+    return json_decode(file_get_contents("model/dataStorage/TypeSnows.json"), true);
 }
 
 function getUsers()
