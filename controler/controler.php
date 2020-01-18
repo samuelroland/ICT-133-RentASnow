@@ -5,8 +5,7 @@ require_once 'model/model.php';
 
 function home()
 {
-    $title = "Accueil de RentASnow";
-    $description = "Bonne visite et locations ...";
+
     $news = getNews();
     require_once 'view/home.php';
 }
@@ -27,6 +26,7 @@ function trylogin($email, $password)
     foreach ($listUsers as $userinrun) {    //scanner toutes les personnes inscrites.
         if ($email == $userinrun['email'] && $password == $userinrun['password']) {
             $_SESSION['user'] = $email;
+            $_SESSION['name'] = $userinrun['firstname'] . " " . $userinrun['lastname'];
         }
     }
     if (isset($_SESSION['user']) == false) {
@@ -39,6 +39,7 @@ function trylogin($email, $password)
 function disconnect()
 {
     unset($_SESSION['user']);
+    unset($_SESSION['name']);
     require_once "view/home.php";
 }
 

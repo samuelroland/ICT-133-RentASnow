@@ -2,10 +2,13 @@
 session_start();
 
 //prendre les valeurs du formulaire de login si rempli:
-if (isset($_POST['user']) && isset($_POST['password'])) {
-    $username = $_POST['username'];
+if (isset($_POST['email']) && isset($_POST['password'])) {
+    $email = $_POST['email'];
     $password = $_POST['password'];
 }
+//Valeurs page accueil par défaut:
+$title = "Accueil de RentASnow";
+$description = "Bonne visite et locations ...";
 
 require "controler/controler.php";
 

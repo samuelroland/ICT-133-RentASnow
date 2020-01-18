@@ -19,7 +19,7 @@
     margin-top: 150px;
 }
 .smallheader{
-    height: 250px;
+    height: 350px;
 }
 .bigheader{
     height: 500px;
@@ -59,4 +59,12 @@ code {
 
 .imgsnowdetails{
     width: 350px;
+}
+
+.logo{
+    width: 19px;
+    margin: 2px;
+}
+.header-login{
+    margin-top: 48px;
 }

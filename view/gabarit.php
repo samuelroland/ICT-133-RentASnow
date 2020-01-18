@@ -48,65 +48,74 @@
         }
 
         ?>">
-            <div class="row-fluid">
-                <div class="row">
-                    <div id="divLogo" class="pull-left">
-                        <a href="index.php" id="divSiteTitle">Rent A Snow</a><br/>
-                        <a href="index.php" id="divTagLine">La glisse à moindre coût</a>
-                    </div>
+            <div class="row">
+                <div id="divLogo" class="col">
+                    <a href="index.php" id="divSiteTitle">Rent A Snow</a><br/>
+                    <a href="index.php" id="divTagLine">La glisse à moindre coût</a>
                 </div>
-                <div id="divLogin" class=" pull-right col-lg-5 col-md-5 col-sm-12">
-                    <?php
-                    //Si il est connecté:
-                    if (isset($_SESSION['user']) == false) { ?>
-                        <form action="/index.php?action=trylogin" method="post">
-                            <strong>Connexion</strong><br>
-                            <label for="">Identifiant</label>
-                            <input type="email" id="email" class="form-control" name="email"
-                                   placeholder="john64@gmail.com"><br>
-                            <label for="">Mot de passe</label>
-                            <input type="password" class="form-control" id="password" name="password"><br>
-                            <?php
-                            var_dump($_SESSION['failed']);
-                                if ($_SESSION['failed']==true){ //si l'utilisateur à raté à la dernière tentative de login
-                                    var_dump($_SESSION['failed']);
-                                    echo "<p>Les identifiants de connexion ne concordent pas</p>";
-                                }
-
-                            ?>
-                            <p><a href="/?action=forgotpwd">Mot de passe oublié ? </a></p>
-                            <p>Pas encore inscrit ? <a href="/?action=createaccount">Créer un compte.</a></p>
-                            <input type="submit" value="Se connecter !">
-                        </form>
-                    <?php } else { //Si il n'est pas connecté:
-                        ?>
+                <?php
+                if (isset($_SESSION['user']) == true) { ?>
+                    <div id="divLogin" class="col-3 header-login">
                         <form action="/index.php?action=disconnect" method="post">
-                            <strong>Connecté en tant que: </strong>
-                            <span><?= $_SESSION['user'] ?></span><br><br>
+                            <strong><?= $_SESSION['name'] ?></strong><br><br>
                             <input type="submit" value="Déconnexion !">
                         </form>
-                    <?php }
-
-                    ?>
-
-                </div>
-
-                <div class="col-lg-7 col-md-5 col-sm-12">
-                    <div class="navbar col-12">
-                        <ul class="nav nav-pills">
-                            <!-- On commence par afficher les boutons qui s'afficheront, peu importe les événements-->
-                            <li><a href="index.php?action=home">Home</a></li>
-                            <li><a href="index.php?action=displaySnows">Snows</a></li>
-                            <li><a href="index.php?action=displaySnows">Anciens achats</a></li>
-                            <li><a href="index.php?action=displayPanier"><img src="view/images/cart.png" alt=""> Mes
-                                    locations</a></li>
-                            <?php if (isset($_SESSION['user']) == true) { ?>
-                                <li><a href="index.php?action=myaccount">Mon compte</a></li>
-                            <?php } ?>
-                        </ul>
                     </div>
+                <?php }
+                ?>
+
+            </div>
+            <?php
+            //Si il est connecté:
+            if (isset($_SESSION['user']) == false) { ?>
+                <div id="divLogin" class=" pull-right col-lg-5 col-md-5 col-sm-12">
+                    <form action="/index.php?action=trylogin" method="post">
+                        <strong>Connexion</strong><br>
+                        <label for="">Identifiant</label>
+                        <input type="email" id="email" class="form-control" name="email"
+                               placeholder="john64@gmail.com"><br>
+                        <label for="">Mot de passe</label>
+                        <input type="password" class="form-control" id="password" name="password"><br>
+                        <p><a href="/?action=forgotpwd">Mot de passe oublié ? </a></p>
+                        <?php
+                        if ($_SESSION['failed'] == true) { //si l'utilisateur à raté à la dernière tentative de login
+                            echo "<strong><p class='alert-danger rounded container'>Les identifiants de connexion ne concordent pas</p></strong>";
+                        }
+                        ?>
+
+                        <p>Pas encore inscrit ? <a href="/?action=createaccount">Créer un compte.</a></p>
+                        <input type="submit" value="Se connecter !">
+                    </form>
+                </div>
+            <?php } ?>
+
+            <?php
+            if (isset($_SESSION['user'])==false){   //div du début du menu.
+                echo "<div class='col-lg-7 col-md-5 col-sm-12 '>";
+            }else{
+                echo "<div>";
+            }
+            ?>
+                <div class="navbar col-12">
+                    <ul class="nav nav-pills">
+                        <!-- On commence par afficher les boutons qui s'afficheront, peu importe les événements-->
+                        <li><a href="index.php?action=home"><img src="/view/logo/house.png" class="logo" alt="">
+                                Home</a></li>
+                        <li><a href="index.php?action=displaySnows"><img src="/view/logo/snowboard.png" class="logo"
+                                                                         alt=""> Snows</a></li>
+                        <li><a href="index.php?action=displaySnows"><img src="/view/logo/liste.png" class="logo"
+                                                                         alt=""> Anciens achats</a></li>
+                        <li><a href="index.php?action=displayPanier"><img class="logo" src="/view/images/cart.png"
+                                                                          alt=""> Mes
+                                locations</a></li>
+                        <?php if (isset($_SESSION['user']) == true) { ?>
+                            <li><a href="index.php?action=myaccount"><img src="/view/logo/réglages.png" class="logo"
+                                                                          alt=""> Réglages du compte</a></li>
+                        <?php } ?>
+                    </ul>
                 </div>
             </div>
+
         </header>
 
         <div class="contentArea">
