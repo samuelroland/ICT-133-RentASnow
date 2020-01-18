@@ -28,7 +28,7 @@ switch ($action) {
         disconnect();
         break;
     case "createaccount":
-        createaaccount();
+        createaccount();
         break;
         case "detailsproducts";
         detailsproductsshow();
