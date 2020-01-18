@@ -57,7 +57,7 @@
                 if (isset($_SESSION['user']) == true) { ?>
                     <div id="divLogin" class="col-3 header-login">
                         <form action="/index.php?action=disconnect" method="post">
-                            <strong><?= $_SESSION['name'] ?></strong><br><br>
+                            <strong><?= $_SESSION['name'] ?></strong><br>(<?= $_SESSION['user']?>)<br>
                             <input type="submit" value="Déconnexion !">
                         </form>
                     </div>
@@ -67,7 +67,7 @@
             </div>
             <?php
             //Si il est connecté:
-            if (isset($_SESSION['user']) == false) { ?>
+            if (isset($_SESSION['user']) == false && $_GET['action'] !="createaccount") { ?>
                 <div id="divLogin" class=" pull-right col-lg-5 col-md-5 col-sm-12">
                     <form action="/index.php?action=trylogin" method="post">
                         <strong>Connexion</strong><br>
