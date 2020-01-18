@@ -1,5 +1,6 @@
 [
   {
+    "idtype": 1,
     "modele": "B101",
     "marque": "Burton",
     "bigimage": "B101.jpg",
@@ -8,6 +9,7 @@
     "disponible": true
   },
   {
+    "idtype": 2,
     "modele": "B126",
     "marque": "Free Thinker",
     "bigimage": "B126.jpg",
@@ -16,6 +18,7 @@
     "disponible": false
   },
   {
+    "idtype": 3,
     "modele": "B327",
     "marque": "Burton",
     "bigimage": "B327.jpg",
@@ -24,6 +27,7 @@
     "disponible": false
   },
   {
+    "idtype": 4,
     "modele": "K067",
     "marque": "Prior",
     "bigimage": "K067.jpg",
@@ -32,6 +36,7 @@
     "disponible": false
   },
   {
+    "idtype": 5,
     "modele": "K266",
     "marque": "KR",
     "bigimage": "K266.jpg",
@@ -40,6 +45,7 @@
     "disponible": true
   },
   {
+    "idtype": 6,
     "modele": "K409",
     "marque": "KR",
     "bigimage": "K409.jpg",
@@ -48,6 +54,7 @@
     "disponible": true
   },
   {
+    "idtype": 7,
     "modele": "N100",
     "marque": "NSnow",
     "bigimage": "N100.jpg",
@@ -56,6 +63,7 @@
     "disponible": false
   },
   {
+    "idtype": 8,
     "modele": "N754",
     "marque": "NSnow",
     "bigimage": "N754.jpg",
@@ -64,6 +72,7 @@
     "disponible": false
   },
   {
+    "idtype": 9,
     "modele": "P067",
     "marque": "Prior",
     "bigimage": "P067.jpg",
@@ -72,6 +81,7 @@
     "disponible": false
   },
   {
+    "idtype": 10,
     "modele": "P165",
     "marque": "Prior",
     "bigimage": "P165.jpg",
