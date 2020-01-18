@@ -73,9 +73,9 @@
                         <strong>Connexion</strong><br>
                         <label for="">Identifiant</label>
                         <input type="email" id="email" class="form-control" name="email"
-                               placeholder="john64@gmail.com"><br>
+                               placeholder="john64@gmail.com" required><br>
                         <label for="">Mot de passe</label>
-                        <input type="password" class="form-control" id="password" name="password"><br>
+                        <input type="password" class="form-control" id="password" name="password" required><br>
                         <p><a href="/?action=forgotpwd">Mot de passe oublié ? </a></p>
                         <?php
                         if ($_SESSION['failed'] == true) { //si l'utilisateur à raté à la dernière tentative de login
