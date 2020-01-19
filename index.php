@@ -30,8 +30,11 @@ switch ($action) {
     case "createaccount":
         createaccount();
         break;
-        case "detailsproducts";
+    case "detailsproducts";
         detailsproductsshow();
+        break;
+    case "snowimgupload":
+        getsnowimg();
         break;
     default:
         home();
