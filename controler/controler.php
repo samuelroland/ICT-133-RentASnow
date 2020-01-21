@@ -134,6 +134,7 @@ function trylogin($email, $password)
         if ($email == $userinrun['email'] && $password == $userinrun['password']) {
             $_SESSION['user'] = $email;
             $_SESSION['name'] = $userinrun['firstname'] . " " . $userinrun['lastname'];
+            $_SESSION['employe'] = $userinrun['employe'];
         }
     }
     if (isset($_SESSION['user']) == false) {
