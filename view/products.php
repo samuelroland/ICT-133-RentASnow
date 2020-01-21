@@ -9,11 +9,6 @@ ob_start(); //départ du buffer.
 echo "<div class='row ' id='listsnows'>";
 foreach ($listproducts as $product) {
     ?>
-
-    <form action="/index.php?action=snowimgupload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="fichier"/>
-        <input type="submit" value="Téléverser"/>
-    </form>
     <div class="divSnow col-sm-12 col-md-6 col-lg-4">
         <a href='/?action=detailsproducts&model=<?= $product['modele'] ?>'><h3><?= $product['modele'] ?></h3>
             <h4><?= $product['marque'] ?></h4>
