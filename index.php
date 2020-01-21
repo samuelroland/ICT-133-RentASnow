@@ -33,8 +33,8 @@ switch ($action) {
     case "detailsproducts";
         detailsproductsshow();
         break;
-    case "snowimgupload":
-        getsnowimg();
+    case "createsnowmodele":
+        createsnowmodele();
         break;
     default:
         home();
