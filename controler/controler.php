@@ -19,86 +19,130 @@ function products()
     require_once 'view/products.php';
 }
 
-function getsnowimg()
+function createsnowmodele()
 {
-    var_dump($_FILES);
+    unset($message);
+    $formtype = 0;
+    if (isset($_POST['modele']) == false && isset($_POST['marque']) == false && isset($_SESSION['snowincreation']) == false) {   //si rien n'est envoyé alors première page.
+        //Afficher formulaire pour modèle et marque:
+        $title = "Ajouter un nouveau modèle de snowboard";
+        $description = "Fonctionnalité uniquement pour les employés, qui sont autorisés à gérer le stock.";
+        $formtype = 1;
+    }
+    if (isset($_POST['modele']) && isset($_POST['marque']) && isset($_SESSION['snowincreation']) == false) {
+        //si le modèle n'existe pas dans sa marque:
+        $listSnowsModeles = getProducts();
+        foreach ($listSnowsModeles as $onemodel) {
+            if ($onemodel['modele'] == $_POST['modele']) {
+                $formtype = 1;
+                $title = "Erreur: le modèle " . $_POST['modele'] . " existe déjà !";
+                $description = "";
+                $message = "Vous ne pouvez pas insérer deux fois le même modèle, même sur une marque différente...";
+            }
+        }
+        if ($formtype != 1) {
+            //On peut enregistrer les valeurs.
+            $_SESSION['snowincreation'] = [
+                "modele" => $_POST['modele'],
+                "marque" => $_POST['marque'],
+                "filename" => "random"
+            ];
+            $title = "Ajout d'images au modèle " . $_SESSION['snowincreation']['modele'];
+            $description = "Le modèle " . $_SESSION['snowincreation']['modele'] . " est en cours de création. Remplissez les dernières informations.";
+            //Afficher formulaire pour l'image:
+            $formtype = 2;
+        }
 
-    /************************************************************
-     * Script realise par Emacs
-     * Crée le 19/12/2004
-     * Maj : 23/06/2008
-     * Licence GNU / GPL
-     * webmaster@apprendre-php.com
-     * http://www.apprendre-php.com
-     * http://www.hugohamon.com
-     *
-     * Changelog:
-     *
-     * 2008-06-24 : suppression d'une boucle foreach() inutile
-     * qui posait problème. Merci à Clément Robert pour ce bug.
-     *
-     *************************************************************/
 
-    /************************************************************
-     * Definition des constantes / tableaux et variables
-     *************************************************************/
+    }
+    if (isset($_POST['modele']) == false && isset($_POST['marque']) == false && isset($_SESSION['snowincreation'])) {
+        $title = "Ajout d'images au snowboard " . $_POST['modele'];
+        $description = "Le modèle " . $_POST['modele'] . " est en cours de création. Remplissez les dernières informations.";
+        //Afficher formulaire pour l'image:
+        $formtype = 2;
+    }
+    if (isset($_SESSION['snowincreation']) && isset($_FILES[$_SESSION['snowincreation']['filename']])) {
+        $title = "Nouveau modèle " . $_SESSION['snowincreation']['modele'] . " créé !";
+        $description = "Le nouveau modèle de snow " . $_SESSION['snowincreation']['modele'] . " de la marque " . $_SESSION['snowincreation']['marque'] . " a été ajouté à la liste des modèles des snows.";
+        $formtype = 3;  //le modèle a été créé. message de succès.
+
+//Uploader l'image et déplacer vers dossier image:
+        /************************************************************
+         * Script realise par Emacs
+         * Crée le 19/12/2004
+         * Maj : 23/06/2008
+         * Licence GNU / GPL
+         * webmaster@apprendre-php.com
+         * http://www.apprendre-php.com
+         * http://www.hugohamon.com
+         *
+         * Changelog:
+         *
+         * 2008-06-24 : suppression d'une boucle foreach() inutile
+         * qui posait problème. Merci à Clément Robert pour ce bug.
+         *
+         *************************************************************/
+
+        /************************************************************
+         * Definition des constantes / tableaux et variables
+         *************************************************************/
 
 // Constantes
-    define('TARGET', 'C:\Users\PC_Samuel_01\AppData\Local\Temp');    // Repertoire cible
-    define('MAX_SIZE', 100000);    // Taille max en octets du fichier
-    define('WIDTH_MAX', 800);    // Largeur max de l'image en pixels
-    define('HEIGHT_MAX', 800);    // Hauteur max de l'image en pixels
-
+        define('TARGET', $_SERVER['DOCUMENT_ROOT'] . "/view/images/");    // Repertoire cible
+        define('MAX_SIZE', 10000000);    // Taille max en octets du fichier
+        define('WIDTH_MAX', 3000);    // Largeur max de l'image en pixels
+        define('HEIGHT_MAX', 3000);    // Hauteur max de l'image en pixels
+        define('NOMUPLOAD', $_SESSION['snowincreation']['filename']);    //nom de l'upload. nom entrée dans $_FILES
 // Tableaux de donnees
-    $tabExt = array('jpg', 'gif', 'png', 'jpeg');    // Extensions autorisees
-    $infosImg = array();
+        $tabExt = array('jpg', 'gif', 'png', 'jpeg');    // Extensions autorisees
+        $infosImg = array();
 
 // Variables
-    $extension = '';
-    $message = '';
-    $nomImage = '';
+        $extension = '';
+        $message = '';
+        $nomImage = '';
 
-    /************************************************************
-     * Creation du repertoire cible si inexistant
-     *************************************************************/
-    if (!is_dir(TARGET)) {
-        if (!mkdir(TARGET, 0755)) {
-            exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous diposiez des droits suffisants pour le faire ou créez le manuellement !');
+        /************************************************************
+         * Creation du repertoire cible si inexistant
+         *************************************************************/
+        if (!is_dir(TARGET)) {
+            if (!mkdir(TARGET, 0755)) {
+                exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous diposiez des droits suffisants pour le faire ou créez le manuellement !');
+            }
         }
-    }
-    var_dump(is_dir(TARGET));
-    var_dump($_POST);
-    /************************************************************
-     * Script d'upload
-     *************************************************************/
-    if (!empty($_POST)) {
-        // On verifie si le champ est rempli
-        if (!empty($_FILES['fichier']['name'])) {
+        /************************************************************
+         * Script d'upload
+         *************************************************************/
+        if (!empty($_FILES[NOMUPLOAD]['name'])) {
             // Recuperation de l'extension du fichier
-            $extension = pathinfo($_FILES['fichier']['name'], PATHINFO_EXTENSION);
+            $extension = pathinfo($_FILES[NOMUPLOAD]['name'], PATHINFO_EXTENSION);
 
             // On verifie l'extension du fichier
             if (in_array(strtolower($extension), $tabExt)) {
                 // On recupere les dimensions du fichier
-                $infosImg = getimagesize($_FILES['fichier']['tmp_name']);
+                $infosImg = getimagesize($_FILES[NOMUPLOAD]['tmp_name']);
 
                 // On verifie le type de l'image
                 if ($infosImg[2] >= 1 && $infosImg[2] <= 14) {
                     // On verifie les dimensions et taille de l'image
-                    if (($infosImg[0] <= WIDTH_MAX) && ($infosImg[1] <= HEIGHT_MAX) && (filesize($_FILES['fichier']['tmp_name']) <= MAX_SIZE)) {
+                    if (($infosImg[0] <= WIDTH_MAX) && ($infosImg[1] <= HEIGHT_MAX) && (filesize($_FILES[NOMUPLOAD]['tmp_name']) <= MAX_SIZE)) {
                         // Parcours du tableau d'erreurs
-                        if (isset($_FILES['fichier']['error'])
-                            && UPLOAD_ERR_OK === $_FILES['fichier']['error']) {
+                        if (isset($_FILES[NOMUPLOAD]['error'])
+                            && UPLOAD_ERR_OK === $_FILES[NOMUPLOAD]['error']) {
                             // On renomme le fichier
-                            $nomImage = md5(uniqid()) . '.' . $extension;
-
-                            // Si c'est OK, on teste l'upload
-                            if (move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET . $nomImage)) {
-                                $message = 'Upload réussi !';
+                            $nomImage = $_SESSION['snowincreation']['modele'] . '.' . $extension;
+                            if (file_exists(TARGET . $nomImage) == false) {
+                                if (move_uploaded_file($_FILES[NOMUPLOAD]['tmp_name'], TARGET . $nomImage)) {
+                                    $message = 'Upload réussi !';
+                                    unset($_FILES[NOMUPLOAD]);  //ce fichier on en a plus besoin.
+                                } else {
+                                    // Sinon on affiche une erreur systeme
+                                    $message = 'Problème lors de l\'upload !';
+                                }
                             } else {
-                                // Sinon on affiche une erreur systeme
-                                $message = 'Problème lors de l\'upload !';
+                                $message = "Une photo du même nom se trouve déjà dans le dossier de destination... Le modèle est déjà existant.";
                             }
+                            // Si c'est OK, on teste l'upload
                         } else {
                             $message = 'Une erreur interne a empêché l\'uplaod de l\'image';
                         }
@@ -114,14 +158,14 @@ function getsnowimg()
                 // Sinon on affiche une erreur pour l'extension
                 $message = 'L\'extension du fichier est incorrecte !';
             }
-        } else {
-            // Sinon on affiche une erreur pour le champ vide
-            $message = 'Veuillez remplir le formulaire svp !';
+
         }
+
+        //Ajouter le modèle de snowboard:
+        addSnowModel($_SESSION['snowincreation']['modele'], $_SESSION['snowincreation']['marque'], $_SESSION['snowincreation']['modele'] . $extension, $_SESSION['snowincreation']['modele'] . $extension);
+        unset($_SESSION['snowincreation']);
     }
-    move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET . $nomImage);
-    $title = $message;
-    $description = var_dump($_POST);
+
 
     require_once 'view/createsnowboard.php';
 }
@@ -137,6 +181,7 @@ function trylogin($email, $password)
             $_SESSION['employe'] = $userinrun['employe'];
         }
     }
+    var_dump($_SESSION['employe']);
     if (isset($_SESSION['user']) == false) {
         $_SESSION['failed'] = true;
     }
@@ -147,6 +192,7 @@ function disconnect()
 {
     unset($_SESSION['user']);
     unset($_SESSION['name']);
+    unset($_SESSION['employe']);
     home();
 }
 
