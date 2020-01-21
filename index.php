@@ -1,6 +1,7 @@
 <?php
 session_start();
 unset($_SESSION['error']);
+unset($_SESSION['employe']);
 //prendre les valeurs du formulaire de login si rempli:
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = $_POST['email'];

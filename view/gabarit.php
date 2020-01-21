@@ -107,7 +107,7 @@
                     <li><a href="index.php?action=displayPanier"><img class="logo" src="/view/images/cart.png"
                                                                       alt=""> Mes
                             locations</a></li>
-                    <?php if (isset($_SESSION['employe']) == true) { ?>
+                    <?php if ($_SESSION['employe'] == true) { ?>
                         <li><a href="index.php?action=createsnowmodele"><img src="/view/images/edit2.png" class="logo"
                                                                              alt=""> Nouveau modèle de snow</a></li>
                     <?php } ?>
