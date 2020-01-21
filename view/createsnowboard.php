@@ -5,12 +5,62 @@
  *  Creation date: 09.01.2020
  */
 ob_start();
+var_dump($formtype);
+var_dump($_SESSION['snowincreation']);
+if ($message != "Upload réussi !" && isset($message)) {
+    echo "<p class='alert alert-danger'>$message</p>";
+    if (isset($title) == false) {
+        $title = "Erreur avec l'image du snowboard";
+    }
 
+    $description = "";
+} else {
+
+    switch ($formtype) {
+        case 2:
+            ?>
+            <form action="/?action=createsnowmodele" method="POST" enctype="multipart/form-data">
+                <input type="file" name="<?= $_SESSION['snowincreation']['filename'] ?>"/>
+                <input type="submit" value="Téléverser"/>
+            </form>
+            <?php
+            break;
+        case 3:
+            ?>
+            <img src="view/images/<?= $_SESSION['snowincreation']['nomimage'] ?>">
+            <?php
+            break;
+        default:
+            ?>
+
+            <form action="/?action=createsnowmodele" method="POST" class="form-group">
+                <br>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <label for="modele">Modèle</label>
+                        <input type="text" id="modele" name="modele" class="form-group form-control" required
+                               maxlength="4">
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label for="marque">Marque</label>
+                        <input type="text" id="marque" name="marque" class="form-group form-control" required
+                               maxlength="25">
+                    </div>
+                </div>
+                <input type="submit" id="btnsubmit" value="Ajouter">
+            </form>
+            <?php
+            break;
+
+    }
+
+}
 ?>
-<p>page createsnowboard.php </p>
+
+
+
 
 <?php
 $content = ob_get_clean();
 require "gabarit.php";
 ?>
-
