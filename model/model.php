@@ -34,4 +34,20 @@ function addUser($firstname, $lastname, $email, $password, $birthdate, $wantnews
 
 }
 
+function addSnowModel($modele, $marque, $bigimage, $smallimage)
+{
+    $listSnowsModeles = getProducts();
+    $newModel = [
+        'idtype' => count($listSnowsModeles) + 1,   //id du modèle de snow suivant.
+        'modele' => $modele,
+        'marque' => $marque,
+        'bigimage' => $bigimage,
+        'smallimage' => $smallimage
+    ];
+
+    $listSnowsModeles[] = $newModel;    //insérer ce nouveau modèle à la fin du tableau.
+    file_put_contents("model/dataStorage/TypeSnows.json", json_encode($listSnowsModeles)); //enregistrer dans le fichier json.
+
+}
+
 ?>
