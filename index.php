@@ -1,7 +1,7 @@
 <?php
 session_start();
 unset($_SESSION['error']);
-if  (isset($_SESSION['user']) == false){
+if (isset($_SESSION['user']) == false) {
     unset($_SESSION['employe']);
 }
 
@@ -14,11 +14,32 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 $title = "Accueil de RentASnow";
 $description = "Bonne visite et locations ...";
 
-require "controler/controler.php";
+require "controler/controler.php";  //récupère les fonctions du controler.
 
 //prendre l'action voulue de la querystring
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
+}
+
+//détails d'un produit
+if (isset($_GET['model'])) {
+    $modelinget = $_GET['model'];
+}
+//Création d'un produit
+if (isset($_POST['newmodele']) && isset($_POST['newmarque'])) {
+    $newmodele = $_POST['newmodele'];
+    $newmarque = $_POST['newmarque'];
+}
+//Création d'un compte
+if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['birthdate']) && isset($_POST['haslawsaccepted']) && isset($_POST['wantnews'])) {
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $password2 = $_POST['password2'];
+    $birthdate = $_POST['birthdate'];
+    $haslawsaccepted = $_POST['haslawsaccepted'];
+    $wantnews = $_POST['wantnews'];
 }
 
 switch ($action) {
@@ -32,13 +53,13 @@ switch ($action) {
         disconnect();
         break;
     case "createaccount":
-        createaccount();
+        createaccount($firstname, $lastname, $email, $password, $password2, $birthdate, $haslawsaccepted, $wantnews);
         break;
     case "detailsproducts";
-        detailsproductsshow();
+        detailsproductsshow($modelinget);
         break;
     case "createsnowmodele":
-        createsnowmodele();
+        createsnowmodele($newmodele, $newmarque);
         break;
     default:
         home();

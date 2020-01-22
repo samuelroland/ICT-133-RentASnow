@@ -19,23 +19,23 @@ function products()
     require_once 'view/products.php';
 }
 
-function createsnowmodele()
+function createsnowmodele($modele, $marque)
 {
     unset($message);
     $formtype = 0;
-    if (isset($_POST['modele']) == false && isset($_POST['marque']) == false && isset($_SESSION['snowincreation']) == false) {   //si rien n'est envoyé alors première page.
+    if (isset($modele) == false && isset($marque) == false && isset($_SESSION['snowincreation']) == false) {   //si rien n'est envoyé alors première page.
         //Afficher formulaire pour modèle et marque:
         $title = "Ajouter un nouveau modèle de snowboard";
         $description = "Fonctionnalité uniquement pour les employés, qui sont autorisés à gérer le stock.";
         $formtype = 1;
     }
-    if (isset($_POST['modele']) && isset($_POST['marque']) && isset($_SESSION['snowincreation']) == false) {
+    if (isset($modele) && isset($marque) && isset($_SESSION['snowincreation']) == false) {
         //si le modèle n'existe pas dans sa marque:
         $listSnowsModeles = getProducts();
         foreach ($listSnowsModeles as $onemodel) {
-            if ($onemodel['modele'] == $_POST['modele']) {
+            if ($onemodel['modele'] == $modele) {
                 $formtype = 1;
-                $title = "Erreur: le modèle " . $_POST['modele'] . " existe déjà !";
+                $title = "Erreur: le modèle " . $modele . " existe déjà !";
                 $description = "";
                 $message = "Vous ne pouvez pas insérer deux fois le même modèle, même sur une marque différente...";
             }
@@ -43,8 +43,8 @@ function createsnowmodele()
         if ($formtype != 1) {
             //On peut enregistrer les valeurs.
             $_SESSION['snowincreation'] = [
-                "modele" => $_POST['modele'],
-                "marque" => $_POST['marque'],
+                "modele" => $modele,
+                "marque" => $marque,
                 "filename" => "random"
             ];
             $title = "Ajout d'images au modèle " . $_SESSION['snowincreation']['modele'];
@@ -55,9 +55,9 @@ function createsnowmodele()
 
 
     }
-    if (isset($_POST['modele']) == false && isset($_POST['marque']) == false && isset($_SESSION['snowincreation'])) {
-        $title = "Ajout d'images au snowboard " . $_POST['modele'];
-        $description = "Le modèle " . $_POST['modele'] . " est en cours de création. Remplissez les dernières informations.";
+    if (isset($modele) == false && isset($marque) == false && isset($_SESSION['snowincreation'])) {
+        $title = "Ajout d'images au snowboard " . $modele;
+        $description = "Le modèle " . $modele . " est en cours de création. Remplissez les dernières informations.";
         //Afficher formulaire pour l'image:
         $formtype = 2;
     }
@@ -173,15 +173,14 @@ function createsnowmodele()
 function trylogin($email, $password)
 {
     $_SESSION['failed'] = false;
-    $listUsers = getUsers();
-    foreach ($listUsers as $userinrun) {    //scanner toutes les personnes inscrites.
-        if ($email == $userinrun['email'] && $password == $userinrun['password']) {
-            $_SESSION['user'] = $email;
-            $_SESSION['name'] = $userinrun['firstname'] . " " . $userinrun['lastname'];
-            $_SESSION['employe'] = $userinrun['employe'];
+    $TheUser = getOneUser($email);
+    if ($TheUser != "") {
+        if ($TheUser['password'] == $password) {   //si le mot de passe correspond à l'adresse email
+            $_SESSION['user'] = $email; //alors on enregistre la connexion dans la session.
+            $_SESSION['name'] = $TheUser['firstname'] . " " . $TheUser['lastname']; //on prend aussi son prénom et nom
+            $_SESSION['employe'] = $TheUser['employe'];   //on se enregistre si il est employé ou pas.
         }
     }
-    var_dump($_SESSION['employe']);
     if (isset($_SESSION['user']) == false) {
         $_SESSION['failed'] = true;
     }
@@ -196,32 +195,32 @@ function disconnect()
     home();
 }
 
-function createaccount()
+function createaccount($firstname, $lastname, $email, $password, $password2, $birthdate, $haslawsaccepted, $wantnews)
 {
     $title = "Créer un compte chez RentASnow";
     $description = "3 minutes pour remplir ce formulaire. Veuillez rentrer les informations suivantes qui serviront à créer votre compte...";
 
     //Si des champs sont remplis alors on a recu les informations du formulaire envoyé
-    if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['password']) && $_POST['password'] == $_POST['password2'] && isset($_POST['birthdate']) && $_POST['haslawsaccepted'] == "on") {    //si tous les champs ont une valeur et qu'ils sont cohérent alors les informations sont valides.
+    if (isset($firstname) && isset($lastname) && isset($email) && isset($password) && $password == $password2 && isset($birthdate) && $haslawsaccepted == "on") {    //si tous les champs ont une valeur et qu'ils sont cohérent alors les informations sont valides.
 
         //Vérifier qu'un utilisateur n'a pas la meme adresse mail.
         $listUsers = getUsers();
         foreach ($listUsers as $userinrun) {    //scanner toutes les personnes inscrites.
-            if ($_POST['email'] == $userinrun['email']) {   //si un user actuel a déjà la meme adresse email:
+            if ($email == $userinrun['email']) {   //si un user actuel a déjà la meme adresse email:
                 $_SESSION['error'] = "emailalreadytaken";   //il y a une erreur de mail.
             }
         }
 
         //Traitement des valeurs booléen avec case à cocher:
-        if ($_POST['wantnews'] == "on") {
+        if ($wantnews == "on") {
             $wantnews = true;
         } else {
             $wantnews = false;
         }
         if ($_SESSION['error'] != "emailalreadytaken") {
             //On peut donc les stocker dans la liste des utilisateurs:
-            addUser($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password'], $_POST['birthdate'], $wantnews);
-            trylogin($_POST['email'], $_POST['password']);  //on peut directement connecter l'utilisateur
+            addUser($firstname, $lastname, $email, $password, $birthdate, $wantnews);
+            trylogin($email, $password);  //on peut directement connecter l'utilisateur
         } else {
             require_once 'view/createaccount.php'; //on doit recommencer le formulaire si erreur de mail.
         }
@@ -232,14 +231,11 @@ function createaccount()
 
 }
 
-function detailsproductsshow()
+function detailsproductsshow($modelesnow)
 {
     $listproducts = getProducts();
-    if (isset($_GET['model']) == true) {
-        $modelesnow = $_GET['model'];
-        $title = "Détails de $modelesnow";
-        $description = "Et vous pouvez ensuite louer !";
-    }
+    $title = "Détails de $modelesnow";
+    $description = "Et vous pouvez ensuite louer !";
 
     require_once 'view/detailsproducts.php';
 }
