@@ -15,6 +15,18 @@ function getUsers()
     return json_decode(file_get_contents("model/dataStorage/Users.json"), true);//recevoir la liste des utilisateurs
 }
 
+function getOneUser($email)
+{
+    $listUsers = getUsers();
+    foreach ($listUsers as $OneUser) {
+        if ($OneUser['email'] == $email) {
+            return $OneUser;
+        }
+    }
+    return "";
+}
+
+
 function addUser($firstname, $lastname, $email, $password, $birthdate, $wantnewsvalue)
 {
 
