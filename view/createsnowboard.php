@@ -37,13 +37,13 @@ if ($message != "Upload réussi !" && isset($message)) {
                 <br>
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
-                        <label for="modele">Modèle</label>
-                        <input type="text" id="modele" name="modele" class="form-group form-control" required
+                        <label for="newmodele">Modèle</label>
+                        <input type="text" id="newmodele" name="newmodele" class="form-group form-control" required
                                maxlength="4">
                     </div>
                     <div class="col-md-6 col-sm-12">
-                        <label for="marque">Marque</label>
-                        <input type="text" id="marque" name="marque" class="form-group form-control" required
+                        <label for="newmarque">Marque</label>
+                        <input type="text" id="newmarque" name="newmarque" class="form-group form-control" required
                                maxlength="25">
                     </div>
                 </div>
