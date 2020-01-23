@@ -1,14 +1,20 @@
 <?php
 session_start();
+//prendre l'action voulue de la querystring
+if (isset($_GET['action'])) {
+    $action = $_GET['action'];
+}
 unset($_SESSION['error']);
 if (isset($_SESSION['user']) == false) {
     unset($_SESSION['employe']);
 }
 
 //prendre les valeurs du formulaire de login si rempli:
-if (isset($_POST['email']) && isset($_POST['password'])) {
+if (isset($_POST['email']) && isset($_POST['password']) && $action=="trylogin") {
     $email = $_POST['email'];
+
     $password = $_POST['password'];
+
 }
 //Valeurs page accueil par défaut:
 $title = "Accueil de RentASnow";
@@ -16,10 +22,7 @@ $description = "Bonne visite et locations ...";
 
 require "controler/controler.php";  //récupère les fonctions du controler.
 
-//prendre l'action voulue de la querystring
-if (isset($_GET['action'])) {
-    $action = $_GET['action'];
-}
+
 
 //détails d'un produit
 if (isset($_GET['model'])) {
