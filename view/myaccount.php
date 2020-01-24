@@ -7,21 +7,27 @@
 ob_start();
 $TheUser = getOneUser($_SESSION['user']);
 $title = "Mon compte";
-$description = "Les informations de mon compte";
+$description = "Affichage des informations de mon compte. La majorité de ces informations ont été données lors de l'inscription sur le site de RentASnow...";
 
 ?>
-<h3>Prénom: <?= $TheUser['firstname'] ?></h3>
-<h3>Nom de famille: <?= $TheUser['lastname'] ?></h3>
-<h3>Email: <?= $TheUser['email'] ?></h3>
-<h3>Date de naissance: <?= date("d M Y", strtotime($TheUser['birthdate'])) ?></h3>
-<h3>Inscrit à la newsletter: <?php if ($TheUser['wantnews'] == true) echo "Oui";
-    else echo "Non"; ?></h3>
-<h3>Employé de RentASnow: <?php if ($TheUser['employe'] == true) echo "Oui";
-    else echo "Non"; ?></h3><br>
+<br>
+<h3>Informations :</h3>
+<h4>Prénom: <?= $TheUser['firstname'] ?></h4>
+<h4>Nom de famille: <?= $TheUser['lastname'] ?></h4>
+<h4>Email: <em><?= $TheUser['email'] ?></em></h4>
+<h4>Date de naissance: <?= date("d M Y", strtotime($TheUser['birthdate'])) ?></h4>
+<h4>Inscrit à la newsletter: <?php if ($TheUser['wantnews'] == true) echo "Oui";
+    else echo "Non"; ?></h4>
+<h4>Employé de RentASnow: <?php if ($TheUser['employe'] == true) echo "Oui";
+    else echo "Non"; ?></h4>
+<a href="/?action=changeaccount">
+    <div class="btn bg-info">Changer des informations</div>
+</a>
+<br><br>
 <form action="/?action=deleteaccount" method="POST">
     <div class="" id="btndelete"><h2>Supprimer le compte ...</h2></div>
     <br>
-    <p>Pour cela nous avons besoin de confirmer votre identité.</p>
+    <p>Attention cet action est irréversible et nous avons donc besoin de confirmer votre identité.</p>
     <label for="password">Mot de passe</label>
     <input type="password" id="password" name="password">
     <input type="submit" value="Supprimer définitivement mon compte" class="container btn-danger">

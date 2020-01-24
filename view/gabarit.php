@@ -58,6 +58,8 @@
                     <div id="divLogin" class="col-3 header-login">
                         <form action="/index.php?action=disconnect" method="post">
                             <strong><?= $_SESSION['name'] ?></strong><br>(<?= $_SESSION['user'] ?>)<br>
+                            <?php if ($_SESSION['employe']==true) echo "Compte: <strong>Employé</strong> de RentASnow" ?>
+                            <br><br>
                             <input type="submit" value="Déconnexion !">
                         </form>
                     </div>
