@@ -9,19 +9,17 @@ if (isset($_SESSION['user']) == false) {
     unset($_SESSION['employe']);
 }
 
+
 //prendre les valeurs du formulaire de login si rempli:
-if (isset($_POST['email']) && isset($_POST['password']) && $action=="trylogin") {
+if (isset($_POST['email']) && isset($_POST['password']) && $action == "trylogin") {
     $email = $_POST['email'];
-
     $password = $_POST['password'];
-
 }
 //Valeurs page accueil par défaut:
 $title = "Accueil de RentASnow";
 $description = "Bonne visite et locations ...";
 
 require "controler/controler.php";  //récupère les fonctions du controler.
-
 
 
 //détails d'un produit
@@ -44,7 +42,10 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['ema
     $haslawsaccepted = $_POST['haslawsaccepted'];
     $wantnews = $_POST['wantnews'];
 }
-
+//fonction deleteaccount
+if (isset($_POST['password']) && $action == "deleteaccount") {
+    $password = $_POST['password'];
+}
 switch ($action) {
     case "displaySnows":
         products();
@@ -66,6 +67,13 @@ switch ($action) {
         break;
     case "myaccount":
         myaccount();
+        break;
+    case "deleteaccount":
+        var_dump($password);
+        if (isset($_SESSION['user'], $password)) {
+            deleteaccount($_SESSION['user'], $password);
+        }
+        var_dump($_SESSION);
         break;
     default:
         home();

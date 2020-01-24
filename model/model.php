@@ -62,4 +62,15 @@ function addSnowModel($modele, $marque, $bigimage, $smallimage)
 
 }
 
+function deleteanaccountinjson($email)
+{
+    $listUsers = getUsers();
+    foreach ($listUsers as $i => $OneUser) {
+        if ($OneUser['email'] == $email) {
+            unset($listUsers[$i]);
+        }
+    }
+    file_put_contents("model/dataStorage/Users.json", json_encode($listUsers));
+}
+
 ?>

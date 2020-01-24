@@ -18,7 +18,7 @@ $description = "Les informations de mon compte";
     else echo "Non"; ?></h3>
 <h3>Employé de RentASnow: <?php if ($TheUser['employe'] == true) echo "Oui";
     else echo "Non"; ?></h3><br>
-<form href="/?action=deleteaccount">
+<form action="/?action=deleteaccount" method="POST">
     <div class="" id="btndelete"><h2>Supprimer le compte ...</h2></div>
     <br>
     <p>Pour cela nous avons besoin de confirmer votre identité.</p>

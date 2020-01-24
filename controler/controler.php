@@ -242,11 +242,26 @@ function detailsproductsshow($modelesnow)
     require_once 'view/detailsproducts.php';
 }
 
-function myaccount(){
+function myaccount()
+{
 
-    if (isset($_SESSION['user'])){
+    if (isset($_SESSION['user'])) {
         require_once "view/myaccount.php";
     }
+}
+
+function deleteaccount($email, $password)
+{
+    $TheUser = getOneUser($email);
+    var_dump($TheUser);
+
+    if (password_verify($password, $TheUser['password'])) {
+        deleteanaccountinjson($email);  //supprimer le compte dans le json
+        disconnect();   //déconnecter et retour à home inclut
+    } else {
+        require_once "view/myaccount.php";
+    }
+    var_dump($_SESSION);
 }
 
 ?>
