@@ -257,9 +257,21 @@ function changeaccountpage($email)
     }
 }
 
-function changeaccountdata()
+function changeaccountdata($email, $firstname, $lastname, $birthdate, $wantnews)
 {
+    modifyuserdata($email, $firstname, $lastname, $birthdate, $wantnews);
 
+
+    //Reconnecter l'utilisateur avec les nouvelles valeurs directement sans mot de passe.
+    $TheUser = getOneUser($email);
+    //reconnecter le user
+    if ($TheUser != "") {
+        $_SESSION['user'] = $email; //alors on enregistre la connexion dans la session avec l'email puisque identifiant unique
+        $_SESSION['name'] = $TheUser['firstname'] . " " . $TheUser['lastname']; //on prend aussi son prénom et nom
+        $_SESSION['employe'] = $TheUser['employe'];   //on enregistre si il est employé ou pas.
+    }
+    //aller sur la page du compte
+    require_once 'view/myaccount.php';
 }
 
 ?>

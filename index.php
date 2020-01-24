@@ -5,7 +5,7 @@
  *  Creation date: Janvier 2020.
  */
 session_start();    //démarrage du système de session.
-var_dump($_SESSION['flashmessage']);
+var_dump($_SESSION);
 require "controler/controler.php";  //récupère les fonctions du controler.
 
 //Récupérer l'action à executer de la querystring par GET
@@ -38,7 +38,7 @@ if (isset($_POST['newmodele']) && isset($_POST['newmarque'])) {
 }
 //Création d'un compte - extraction de tout $_POST
 extract($_POST);    //extraire toutes les valeurs de $_POST, converti les clés en variables et met dedans les valeurs liées à ces clés.
-
+//aussi utile pour changeaccountdata
 
 //Selon l'action:
 switch ($action) {
@@ -89,7 +89,13 @@ switch ($action) {
         changeaccountpage($email);
         break;
     case "changeaccountdata":
-        changeaccountdata();
+        if (isset($_SESSION['user'])) {
+            changeaccountdata($email, $firstname, $lastname, $birthdate, $wantnews);
+        } else {
+            $_SESSION['flashmessage'] = 3;
+            home();
+        }
+
         break;
     default:
         home();

@@ -77,4 +77,29 @@ function deleteanaccountinjson($email)
     file_put_contents("model/dataStorage/Users.json", json_encode($listUsers));
 }
 
+function modifyuserdata($email, $firstname, $lastname, $birthdate, $wantnews)
+{
+    $TheUser = getOneUser($email);
+
+    if ($firstname !="") {
+        $TheUser['firstname'] = $firstname;
+    }
+    if ($lastname !="") {
+        $TheUser['lastname'] = $lastname;
+    }
+    if ($birthdate!="") {
+        $TheUser['birthdate'] = $birthdate;
+    }
+
+    $TheUser['wantnews'] = isset($wantnews);    //de toute facon changer pour valider.
+
+    $listUsers = getUsers();
+    foreach ($listUsers as $i => $OneUser) {
+        if ($OneUser['email'] == $email) {
+            $listUsers[$i] = $TheUser;  // on change dans le tableau d'origine.
+        }
+    }
+    file_put_contents("model/dataStorage/Users.json", json_encode($listUsers));
+}
+
 ?>
