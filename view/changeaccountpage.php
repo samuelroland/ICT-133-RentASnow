@@ -1,8 +1,8 @@
 <?php
 /**
- *  Projet: page createaccount.php pour la présentation des produits
+ *  Projet: page changeaccountpage.php pour afficher la page pour changer les informations du compte
  *  Author: Samuel Roland
- *  Creation date: 09.01.2020
+ *  Creation date: Janvier 2020.
  */
 ob_start();
 

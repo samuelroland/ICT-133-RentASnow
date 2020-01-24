@@ -1,4 +1,9 @@
 <?php
+/**
+ *  Projet: page index.php, page ouverte par défaut par le serveur.
+ *  Author: Samuel Roland
+ *  Creation date: Janvier 2020.
+ */
 session_start();    //démarrage du système de session.
 var_dump($_SESSION['flashmessage']);
 require "controler/controler.php";  //récupère les fonctions du controler.
@@ -63,9 +68,14 @@ switch ($action) {
         detailsproductsshow($modelsnow);
         break;
     case "createsnowmodele":    //créer un nouveau modèle de snows
-        if (isset($newmarque)) { //si un des deux est set (les deux sont set car condition du GET)
+        if ($_SESSION['employe'] == true) { //action autorisée uniquement pour un employé !
             createsnowmodele($newmodele, $newmarque);
+        } else {
+            $_SESSION['flashmessage'] = 3;
+            home();
         }
+
+
         break;
     case "myaccount":   //Affichage des informations de mon compte.
         myaccount($email);

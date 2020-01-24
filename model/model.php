@@ -1,5 +1,9 @@
 <?php
-
+/**
+ *  Projet: page modele.php pour les fonctions de lecture et écriture des fichiers.
+ *  Author: Samuel Roland
+ *  Creation date: Janvier 2020.
+ */
 function getNews()
 {
     return json_decode(file_get_contents("model/dataStorage/news.json"), true);

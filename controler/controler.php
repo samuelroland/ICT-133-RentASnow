@@ -1,4 +1,9 @@
 <?php
+/**
+ *  Projet: page controler.php pour les fonctions de logique
+ *  Author: Samuel Roland
+ *  Creation date: Janvier 2020.
+ */
 require_once 'model/model.php'; //lier le modèle pour avoir ses fonctions
 require_once 'view/helpers.php';
 // This file contains nothing but functions

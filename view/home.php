@@ -1,4 +1,9 @@
 <?php
+/**
+ *  Projet: page home.php pour la page d'accueil
+ *  Author: Samuel Roland
+ *  Creation date: Janvier 2020.
+ */
 ob_start();
 //Valeurs page accueil par défaut:
 $title = "Accueil de RentASnow";

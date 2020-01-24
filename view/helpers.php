@@ -2,7 +2,7 @@
 /**
  *  Projet: page helpers.php pour les fonctions de génération spéciales de contenus
  *  Author: Samuel Roland
- *  Creation date: 09.01.2020
+ *  Creation date: Janvier 2020.
  */
 
 function flashMessage() //Affichage du message flash. inspiré de christopher.
@@ -17,7 +17,7 @@ function flashMessage() //Affichage du message flash. inspiré de christopher.
                 $message = "Cet email est déjà utilisé par un autre utilisateur... Veuillez recommencer avec un autre email.";
                 break;
             case 3:
-                $message = "";
+                $message = "Action non autorisée avec ces permissions... mêlez vous de vos oignons.";
                 break;
             case 4:
                 $message = "";

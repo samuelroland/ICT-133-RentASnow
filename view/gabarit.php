@@ -1,4 +1,11 @@
-﻿<!DOCTYPE HTML>
+﻿<!--
+
+ Projet: page gabarit.php sert de gabarit des pages du site.
+ Author: Samuel Roland
+ Creation date: Janvier 2020.
+-->
+
+<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8">

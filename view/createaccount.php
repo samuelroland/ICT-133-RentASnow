@@ -1,8 +1,8 @@
 <?php
 /**
- *  Projet: page createaccount.php pour la présentation des produits
+ *  Projet: page createaccount.php pour créer un compte
  *  Author: Samuel Roland
- *  Creation date: 09.01.2020
+ *  Creation date: Janvier 2020.
  */
 ob_start();
 ?>
