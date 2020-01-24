@@ -84,6 +84,7 @@ switch ($action) {
         if (isset($_SESSION['user'], $password)) {
             deleteaccount($_SESSION['user'], $password);
         }
+        disconnect();
         break;
     case "changeaccountpage":   //Affichage de la page pour modifier des informations de mon compte.
         changeaccountpage($email);
