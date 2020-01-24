@@ -5,9 +5,6 @@
  *  Creation date: 09.01.2020
  */
 ob_start();
-if ($_SESSION['error'] == "emailalreadytaken") { //si email déjà utilisé
-    echo "<p class='alert-danger'>Cet email est déjà utilisé par un autre utilisateur...</p>";
-}
 ?>
 <form action="/?action=createaccount" method="POST" class="form-group">
     <br>

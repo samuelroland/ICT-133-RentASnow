@@ -39,15 +39,13 @@
 
     <div class="transparent-bg"
          style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: -1;zoom: 1;"></div>
-
-    <div class="divPanel notop nobottom">
-        <header class="<?php if (isset($_SESSION['user']) == false) {
-            echo "bigheader";
-        } else {
-            echo "smallheader";
-        }
-
-        ?>">
+    <header class="<?php if (isset($_SESSION['user']) == false) {
+        echo "bigheader";
+    } else {
+        echo "smallheader";
+    }
+    ?>">
+        <div class="divPanel notop nobottom">
             <div class="row">
                 <div id="divLogo" class="col">
                     <a href="index.php" id="divSiteTitle">Rent A Snow</a><br/>
@@ -58,7 +56,7 @@
                     <div id="divLogin" class="col-3 header-login">
                         <form action="/index.php?action=disconnect" method="post">
                             <strong><?= $_SESSION['name'] ?></strong><br>(<?= $_SESSION['user'] ?>)<br>
-                            <?php if ($_SESSION['employe']==true) echo "Compte: <strong>Employé</strong> de RentASnow" ?>
+                            <?php if ($_SESSION['employe'] == true) echo "Compte: <strong>Employé</strong> de RentASnow" ?>
                             <br><br>
                             <input type="submit" value="Déconnexion !">
                         </form>
@@ -79,11 +77,6 @@
                         <label for="">Mot de passe</label>
                         <input type="password" class="form-control" id="password" name="password" required><br>
                         <p><a href="/?action=forgotpwd">Mot de passe oublié ? </a></p>
-                        <?php
-                        if ($_SESSION['failed'] == true) { //si l'utilisateur à raté à la dernière tentative de login
-                            echo "<strong><p class='alert-danger rounded container'>Les identifiants de connexion ne concordent pas</p></strong>";
-                        }
-                        ?>
 
                         <p>Pas encore inscrit ? <a href="/?action=createaccount">Créer un compte.</a></p>
                         <input type="submit" value="Se connecter !">
@@ -120,7 +113,7 @@
                     <?php } ?>
                 </ul>
             </div>
-    </div>
+        </div>
 
     </header>
 
@@ -128,6 +121,7 @@
         <div class="divPanel notop page-content">
             <div class="row-fluid">
                 <div class="span12" id="divMain">
+                    <?= flashMessage() ?>
                     <h2><?= $title ?></h2>
                     <h4><?= $description ?></h4>
                     <?= $content; ?>

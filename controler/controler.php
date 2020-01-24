@@ -1,11 +1,10 @@
 <?php
-require_once 'model/model.php';
-
+require_once 'model/model.php'; //lier le modèle pour avoir ses fonctions
+require_once 'view/helpers.php';
 // This file contains nothing but functions
 
 function home()
 {
-
     $news = getNews();
     require_once 'view/home.php';
 }
@@ -172,7 +171,6 @@ function createsnowmodele($modele, $marque)
 
 function trylogin($email, $password)
 {
-    $_SESSION['failed'] = false;
     $TheUser = getOneUser($email);
     if ($TheUser != "") {
         //si le mot de passe haché correspond au mot de passe donné:
@@ -184,7 +182,7 @@ function trylogin($email, $password)
     }
 
     if (isset($_SESSION['user']) == false) {
-        $_SESSION['failed'] = true;
+        $_SESSION['flashmessage'] = 1;
     }
     home(); //au lieu d'afficher la vue home on utilise la fonction home() pour avoir les news avec.
 }
@@ -209,7 +207,7 @@ function createaccount($firstname, $lastname, $email, $password, $password2, $bi
         $listUsers = getUsers();
         foreach ($listUsers as $userinrun) {    //scanner toutes les personnes inscrites.
             if ($email == $userinrun['email']) {   //si un user actuel a déjà la meme adresse email:
-                $_SESSION['error'] = "emailalreadytaken";   //il y a une erreur de mail.
+                $_SESSION['flashmessage'] = 2;  //erreur mail déjà pris
             }
         }
 
@@ -219,7 +217,7 @@ function createaccount($firstname, $lastname, $email, $password, $password2, $bi
         } else {    //si wantnews n'est pas coché alors la valeur n'est pas envoyée.
             $wantnews = false;
         }
-        if ($_SESSION['error'] != "emailalreadytaken") {
+        if ($_SESSION['flashmessage'] != 2) {
             //On peut donc les stocker dans la liste des utilisateurs:
             addUser($firstname, $lastname, $email, $hash, $birthdate, $wantnews);
             trylogin($email, $password);  //on peut directement connecter l'utilisateur

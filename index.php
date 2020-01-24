@@ -4,7 +4,6 @@ session_start();
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
 }
-unset($_SESSION['error']);
 if (isset($_SESSION['user']) == false) {
     unset($_SESSION['employe']);
 }
