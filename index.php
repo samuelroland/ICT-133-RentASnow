@@ -34,7 +34,7 @@ if (isset($_POST['newmodele']) && isset($_POST['newmarque'])) {
     $newmarque = $_POST['newmarque'];
 }
 //Création d'un compte
-if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['birthdate']) && isset($_POST['haslawsaccepted']) && isset($_POST['wantnews'])) {
+if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['birthdate']) && isset($_POST['haslawsaccepted'])) {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $email = $_POST['email'];
