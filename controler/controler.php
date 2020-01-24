@@ -242,10 +242,10 @@ function detailsproductsshow($modelesnow)
     require_once 'view/detailsproducts.php';
 }
 
-function myaccount()
+function myaccount($email)
 {
-
     if (isset($_SESSION['user'])) {
+        $TheUser = getOneUser($email);
         require_once "view/myaccount.php";
     }
 }
@@ -262,6 +262,17 @@ function deleteaccount($email, $password)
         require_once "view/myaccount.php";
     }
     var_dump($_SESSION);
+}
+
+function changeaccountpage($email){
+    $TheUser = getOneUser($email);
+    if (isset($_SESSION['user'])) {
+        require_once "view/changeaccountpage.php";
+    }
+}
+
+function changeaccountdata(){
+    
 }
 
 ?>

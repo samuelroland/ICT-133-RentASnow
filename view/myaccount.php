@@ -5,7 +5,7 @@
  *  Creation date: 09.01.2020
  */
 ob_start();
-$TheUser = getOneUser($_SESSION['user']);
+
 $title = "Mon compte";
 $description = "Affichage des informations de mon compte. La majorité de ces informations ont été données lors de l'inscription sur le site de RentASnow...";
 
@@ -20,7 +20,7 @@ $description = "Affichage des informations de mon compte. La majorité de ces in
     else echo "Non"; ?></h4>
 <h4>Employé de RentASnow: <?php if ($TheUser['employe'] == true) echo "Oui";
     else echo "Non"; ?></h4>
-<a href="/?action=changeaccount">
+<a href="/?action=changeaccountpage">
     <div class="btn bg-info">Changer des informations</div>
 </a>
 <br><br>
