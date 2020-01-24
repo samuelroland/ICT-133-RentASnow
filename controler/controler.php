@@ -175,14 +175,14 @@ function trylogin($email, $password)
     if ($TheUser != "") {
         //si le mot de passe haché correspond au mot de passe donné:
         if (password_verify($password, $TheUser['password'])) {   //si le mot de passe correspond à l'adresse email
-            $_SESSION['user'] = $email; //alors on enregistre la connexion dans la session.
+            $_SESSION['user'] = $email; //alors on enregistre la connexion dans la session avec l'email puisque identifiant unique
             $_SESSION['name'] = $TheUser['firstname'] . " " . $TheUser['lastname']; //on prend aussi son prénom et nom
-            $_SESSION['employe'] = $TheUser['employe'];   //on se enregistre si il est employé ou pas.
+            $_SESSION['employe'] = $TheUser['employe'];   //on enregistre si il est employé ou pas.
         }
     }
 
-    if (isset($_SESSION['user']) == false) {
-        $_SESSION['flashmessage'] = 1;
+    if (isset($_SESSION['user']) == false) { //si pas connecté
+        $_SESSION['flashmessage'] = 1;  //message identifiants invalides
     }
     home(); //au lieu d'afficher la vue home on utilise la fonction home() pour avoir les news avec.
 }
@@ -201,34 +201,18 @@ function createaccount($firstname, $lastname, $email, $password, $password2, $bi
     $description = "3 minutes pour remplir ce formulaire. Veuillez rentrer les informations suivantes qui serviront à créer votre compte...";
 
     //Si des champs sont remplis alors on a recu les informations du formulaire envoyé
-    if (isset($firstname) && isset($lastname) && isset($email) && isset($password) && $password == $password2 && isset($birthdate) && $haslawsaccepted == "on") {    //si tous les champs ont une valeur et qu'ils sont cohérent alors les informations sont valides.
+    if ($password == $password2 && $haslawsaccepted == true) {    //si a accepté les lois et les deux mots de passes égaux.
         $hash = password_hash($password, PASSWORD_DEFAULT); //hash du mot de passe
         //Vérifier qu'un utilisateur n'a pas la meme adresse mail.
-        $listUsers = getUsers();
-        foreach ($listUsers as $userinrun) {    //scanner toutes les personnes inscrites.
-            if ($email == $userinrun['email']) {   //si un user actuel a déjà la meme adresse email:
-                $_SESSION['flashmessage'] = 2;  //erreur mail déjà pris
-            }
-        }
-
-        //Traitement des valeurs booléen avec case à cocher:
-        if ($wantnews == "on") {
-            $wantnews = true;
-        } else {    //si wantnews n'est pas coché alors la valeur n'est pas envoyée.
-            $wantnews = false;
-        }
-        if ($_SESSION['flashmessage'] != 2) {
+        if (getOneUser($email) != "") {  //si il trouve un utilisateur avec le même email
+            $_SESSION['flashmessage'] = 2;  //erreur de mail déjà pris.
+            require_once 'view/createaccount.php'; //on doit recommencer le formulaire si erreur de mail.
+        } else {    //si pas d'erreur
             //On peut donc les stocker dans la liste des utilisateurs:
             addUser($firstname, $lastname, $email, $hash, $birthdate, $wantnews);
             trylogin($email, $password);  //on peut directement connecter l'utilisateur
-        } else {
-            require_once 'view/createaccount.php'; //on doit recommencer le formulaire si erreur de mail.
         }
-
-    } else {
-        require_once 'view/createaccount.php';//sinon le formulaire n'a pas été rempli donc on affiche le formulaire
     }
-
 }
 
 function detailsproductsshow($modelesnow)
@@ -260,14 +244,16 @@ function deleteaccount($email, $password)
     }
 }
 
-function changeaccountpage($email){
+function changeaccountpage($email)
+{
     $TheUser = getOneUser($email);
     if (isset($_SESSION['user'])) {
         require_once "view/changeaccountpage.php";
     }
 }
 
-function changeaccountdata(){
+function changeaccountdata()
+{
 
 }
 

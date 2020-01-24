@@ -23,7 +23,7 @@ function getOneUser($email)
             return $OneUser;
         }
     }
-    return "";
+    return "";  //si rien trouvé retourne vide.
 }
 
 

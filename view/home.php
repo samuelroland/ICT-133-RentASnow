@@ -1,5 +1,8 @@
 <?php
 ob_start();
+//Valeurs page accueil par défaut:
+$title = "Accueil de RentASnow";
+$description = "Bonne visite et locations ...";
 ?>
 
 <!-- ________ SLIDER_____________-->
