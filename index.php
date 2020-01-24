@@ -64,6 +64,9 @@ switch ($action) {
     case "createsnowmodele":
         createsnowmodele($newmodele, $newmarque);
         break;
+    case "myaccount":
+        myaccount();
+        break;
     default:
         home();
         break;

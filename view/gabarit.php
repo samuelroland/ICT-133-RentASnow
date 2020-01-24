@@ -114,7 +114,7 @@
 
                     <?php if (isset($_SESSION['user']) == true) { ?>
                         <li><a href="index.php?action=myaccount"><img src="/view/logo/réglages.png" class="logo"
-                                                                      alt=""> Réglages du compte</a></li>
+                                                                      alt=""> Mon compte</a></li>
                     <?php } ?>
                 </ul>
             </div>

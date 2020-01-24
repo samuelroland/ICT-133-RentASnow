@@ -242,4 +242,11 @@ function detailsproductsshow($modelesnow)
     require_once 'view/detailsproducts.php';
 }
 
+function myaccount(){
+
+    if (isset($_SESSION['user'])){
+        require_once "view/myaccount.php";
+    }
+}
+
 ?>
