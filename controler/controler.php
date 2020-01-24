@@ -253,7 +253,6 @@ function myaccount($email)
 function deleteaccount($email, $password)
 {
     $TheUser = getOneUser($email);
-    var_dump($TheUser);
 
     if (password_verify($password, $TheUser['password'])) {
         deleteanaccountinjson($email);  //supprimer le compte dans le json
@@ -261,7 +260,6 @@ function deleteaccount($email, $password)
     } else {
         require_once "view/myaccount.php";
     }
-    var_dump($_SESSION);
 }
 
 function changeaccountpage($email){
@@ -272,7 +270,7 @@ function changeaccountpage($email){
 }
 
 function changeaccountdata(){
-    
+
 }
 
 ?>

@@ -73,11 +73,9 @@ switch ($action) {
         myaccount($email);
         break;
     case "deleteaccount":   //Suppression de mon compte
-        var_dump($password);
         if (isset($_SESSION['user'], $password)) {
             deleteaccount($_SESSION['user'], $password);
         }
-        var_dump($_SESSION);
         break;
     case "changeaccountpage":   //Affichage de la page pour modifier des informations de mon compte.
         changeaccountpage($email);
